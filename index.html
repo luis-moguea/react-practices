@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+    <h1>TESTING PURE REACT</h1>
+    <div class="app" id="app"></div>
+    <script>
+        const app = document.getElementById("app")
+
+        const R = React.createElement
+
+        const Avatar = (params) => {
+        const src = `https://placeimg.com/640/480/${params.id}`
+
+            return R("img", {src})
+        }
+
+
+
+        ReactDOM.render(R("div", null, [R(Avatar, {id: "hi"}), R(Avatar, {id: "bye"})]), app)
+
+    </script>
+</body>
+</html>

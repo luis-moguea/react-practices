@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SCRIPTS TO REACT -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- SCRIPT OF JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <h1>Default values</h1>
+    <div class="app" id="app"></div>
+    <script type="text/babel">
+        const app = document.getElementById("app")
+
+        const useState = React.useState
+
+        const Avatar = ({id, name="default", size}) => {
+        const [enabled, setEnabled] = useState(true)
+
+        //const pictureClassName = props.size === "small" ? "is-small" : ""
+
+        const pictureClassName = () => {
+                if(size === "small"){
+                return "is-small"
+            } else if(size === "large"){
+                return "is-large"
+            } else return ""
+        } 
+        
+
+        const imgClassName = enabled ? "" : "disable" 
+
+        const src = `https://placeimg.com/640/480/${id}`
+
+            return (
+                <picture className={pictureClassName}>
+                    <img  onClick = {()=>{
+                        setEnabled(!enabled)
+                    }} className={imgClassName} src= {src} />
+                    <p>{name}</p>
+                </picture>
+            )
+            
+        }
+
+        /* IMPORTANT! PROPS ARE THE PARAMS THAT WE PROVIDE TO THE REACT COMPONENT */
+
+        ReactDOM.render(
+            <div>
+                <Avatar id={10}  size="small"/>
+                <Avatar id={12} name="test"/>
+                <Avatar id={10} name="test" size="large"/>
+            </div>, app
+        )
+
+    </script>
+</body>
+</html>
